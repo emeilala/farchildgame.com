@@ -1,6 +1,5 @@
 ---
 layout: default
-bare: true
 frame: narrow
 ---
 <section class="coming-soon" aria-labelledby="cs-title">
@@ -11,9 +10,23 @@ frame: narrow
   <p class="tagline">{{ site.tagline }}</p>
   <p class="pitch">Raise a young orphan from age ten to adulthood in this heartfelt life simulation. Manage her studies, hobbies, work, friendships, and romances as she grows from a curious child into a remarkable young woman. The path she follows is yours to shape, but the person she becomes is the sum of every choice you make along the way.</p>
 
+  {% if site.posts.size > 0 %}
+  {%- assign latest = site.posts.first -%}
+  {%- assign latest_season = latest.season | default: site.season -%}
+  <article class="latest season-{{ latest_season }}" aria-labelledby="latest-title">
+    <p class="eyebrow">{% if latest.number %}Letter No. {{ latest.number }} · {% endif %}{{ latest_season | capitalize }} {{ latest.date | date: "%Y" }}</p>
+    <h2 id="latest-title"><a href="{{ latest.url | relative_url }}">{{ latest.title }}</a></h2>
+    {% if latest.subtitle %}<p class="subtitle">{{ latest.subtitle }}</p>{% endif %}
+    <p>{{ latest.excerpt | strip_html | truncatewords: 45 }}</p>
+    <a class="button" href="{{ latest.url | relative_url }}">Read the letter</a>
+    {% if site.posts.size > 1 %}<p class="small"><a href="{{ '/letters/' | relative_url }}">All {{ site.posts.size }} letters</a></p>{% endif %}
+  </article>
+  {% include follow.html %}
+  {% else %}
   <div class="soon">
     <p>The first letter from Thistledown is on its way. Toffee is, as ever, running late.</p>
     <a class="button" href="{{ '/feed.xml' | relative_url }}">{% include rss-icon.html %}Follow the feed</a>
     <p class="small">Or paste <code>farchildgame.com/feed.xml</code> into any feed reader. No email, no account, nothing tracked.</p>
   </div>
+  {% endif %}
 </section>
