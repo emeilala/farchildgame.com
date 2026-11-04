@@ -376,3 +376,100 @@ code {
 .latest .subtitle { margin-bottom: 0.9rem; }
 .latest .small { margin: 1rem 0 0; }
 .coming-soon .follow { text-align: left; }
+
+/* ── Letter blocks: number cards, milestones, lessons ──
+   Used from Markdown. See the sample letter for the syntax. */
+
+/* Number cards: a list followed by {: .numbers} */
+.letter-body .numbers {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.75rem;
+}
+.numbers li {
+  background: var(--card);
+  border-top: 2px solid var(--accent);
+  border-radius: 6px;
+  padding: 0.85rem 1rem;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--ink-strong);
+}
+.numbers li strong {
+  display: block;
+  font-family: var(--display);
+  font-size: 1.8rem;
+  line-height: 1.2;
+  color: var(--accent);
+}
+
+/* Milestones: a list followed by {: .milestones}
+   Start an item with {: .done} or {: .active}; anything else is "next". */
+.letter-body .milestones {
+  list-style: none;
+  margin: 0.75rem 0 1.25rem;
+  padding: 0 0 0 1.25rem;
+  border-left: 2px solid var(--accent);
+  font-size: 0.95rem;
+}
+.milestones li { position: relative; padding: 0.4rem 0; }
+.milestones li::before {
+  content: "";
+  position: absolute;
+  left: -30px; top: 0.6rem;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--parchment);
+}
+.milestones li::after {
+  content: "";
+  position: absolute;
+  left: -26px; top: 0.85rem;
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+}
+.milestones li.done::after,
+.milestones li.active::after {
+  left: -29px; top: 0.65rem;
+  width: 16px; height: 16px;
+  border-radius: 0;
+  background: var(--leaf-a);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1L13.5 5L16.5 3.5L15.8 7.5L20.5 6L18.5 10L22 11L17.5 13.5L18.5 16L13.5 15L12.6 16.5L11.4 16.5L10.5 15L5.5 16L6.5 13.5L2 11L5.5 10L3.5 6L8.2 7.5L7.5 3.5L10.5 5Z M11.3 16 H12.7 V23 H11.3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 1L13.5 5L16.5 3.5L15.8 7.5L20.5 6L18.5 10L22 11L17.5 13.5L18.5 16L13.5 15L12.6 16.5L11.4 16.5L10.5 15L5.5 16L6.5 13.5L2 11L5.5 10L3.5 6L8.2 7.5L7.5 3.5L10.5 5Z M11.3 16 H12.7 V23 H11.3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.milestones li.active::after { background: var(--leaf-b); }
+.milestones em {
+  margin-left: 0.5rem;
+  font-style: normal;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.milestones li:not(.done) em { color: var(--ink-dim); }
+
+/* Lessons: two boxes side by side. See the sample letter. */
+.lessons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0;
+}
+.lessons > div {
+  background: var(--card);
+  border-top: 2px solid var(--accent);
+  border-radius: 6px;
+  padding: 1rem;
+  color: var(--ink-strong);
+}
+.lessons > div + div { border-top-color: var(--ink-dim); }
+.lessons h3 { margin: 0 0 0.5rem; font-size: 1rem; color: var(--accent); }
+.lessons > div + div h3 { color: var(--burgundy); }
+.lessons ul { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; line-height: 1.55; }
+.lessons li { padding: 0.3rem 0; }
+.lessons li + li { border-top: 1px solid rgba(58, 29, 20, 0.15); }
+.lessons p { margin: 0; }
+
