@@ -360,3 +360,19 @@ code {
 @media (prefers-reduced-motion: no-preference) {
   .button, .site-header nav a { transition: color 0.15s, background-color 0.15s; }
 }
+
+/* ── Latest letter on the landing page ── */
+.latest {
+  margin-top: 2.25rem;
+  padding: 1.5rem;
+  background: var(--parchment-light);
+  border: 1px solid var(--gold-soft);
+  border-top: 3px solid var(--accent);
+  text-align: left;
+}
+.latest h2 { margin: 0 0 0.4rem; font-size: 1.8rem; }
+.latest h2 a { color: var(--ink-strong); text-decoration: none; }
+.latest h2 a:hover { text-decoration: underline; }
+.latest .subtitle { margin-bottom: 0.9rem; }
+.latest .small { margin: 1rem 0 0; }
+.coming-soon .follow { text-align: left; }
