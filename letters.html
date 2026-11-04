@@ -1,0 +1,23 @@
+---
+layout: default
+title: Letters
+permalink: /letters/
+frame: narrow
+---
+<section class="page" aria-labelledby="letters-title">
+  <h1 id="letters-title">The letter box</h1>
+  {% if site.posts.size > 0 %}
+  <ol class="letter-list">
+    {% for post in site.posts %}
+    <li>
+      <span class="when season-{{ post.season | default: site.season }}">{{ post.season | default: site.season | capitalize }} {{ post.date | date: "%Y" }}</span>
+      <a href="{{ post.url | relative_url }}">{% if post.number %}Letter No. {{ post.number }}: {% endif %}{{ post.title }}</a>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <p class="muted">No letters yet. Toffee is, as ever, on her way.</p>
+  {% endif %}
+</section>
+
+{% include follow.html %}

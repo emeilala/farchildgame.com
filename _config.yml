@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────
+# Site settings. Changes here need a fresh build
+# (GitHub does this automatically on every save).
+# ─────────────────────────────────────────────
+
+title: FarChild
+tagline: A growing girl's journey of heart
+description: >-
+  A heartfelt life simulation about raising a young orphan from age ten to
+  adulthood. Letters from its development, four times a year.
+author: Archmaiden Studios
+email: hello@farchildgame.com
+url: https://farchildgame.com
+
+# The season used on pages that don't set their own
+# (the landing page, letters list, privacy page).
+# One of: spring, summer, autumn, winter
+season: autumn
+
+# Letters live at farchildgame.com/letters/2026/first-letter/
+permalink: /letters/:year/:title/
+
+plugins:
+  - jekyll-feed
+
+feed:
+  path: feed.xml
+
+exclude:
+  - README.md

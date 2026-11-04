@@ -1,0 +1,40 @@
+---
+layout: default
+frame: narrow
+---
+{%- assign season = page.season | default: site.season | default: "autumn" -%}
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | at_least: 1 -%}
+<article class="letter" aria-labelledby="letter-title">
+  {% include garland.html %}
+
+  <header class="letter-header">
+    <img class="seal" src="{{ '/assets/img/seal.png' | relative_url }}" alt="" width="84">
+    {% include maple.html class="drift drift-1" %}
+    {% include leaf.html class="drift drift-2" %}
+    {% if page.number %}<p class="eyebrow">Letter No. {{ page.number }}</p>{% endif %}
+    <h1 id="letter-title">{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="subtitle">{{ page.subtitle }}</p>{% endif %}
+    <div class="meta">
+      <span class="badge">{% include maple.html %}{{ season | capitalize }} {{ page.date | date: "%Y" }}</span>
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      <span>About {{ minutes }} minute{% if minutes > 1 %}s{% endif %}</span>
+    </div>
+  </header>
+
+  <div class="letter-body">
+    {{ content }}
+  </div>
+
+  <footer class="letter-signoff">
+    <p class="until">Until next season,</p>
+    <p class="signed">{{ site.author }}</p>
+  </footer>
+</article>
+
+<nav class="letter-nav" aria-label="More letters">
+  {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+  {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% else %}<span class="muted">The next one is still in Toffee's satchel.</span>{% endif %}
+</nav>
+
+{% include follow.html %}
